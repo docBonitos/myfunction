@@ -18,7 +18,7 @@ by(df, y = y_var, df$group, fit_fun)
 fit_fun <- function(df, y){ #for changing y and x variables
   lm_mod <- substitute(
     y ~ x,
-  list(y = substitute(y)), x = substitute(x))
+  list(y = substitute(y), x = substitute(x))
   )
 eval(summary(lm(lm_mod, data = df)))
 }
