@@ -23,3 +23,14 @@ fit_fun <- function(df, y){ #for changing y and x variables
 eval(summary(lm(lm_mod, data = df)))
 }
 by(df, y = y_var, x = x_var, df$group, fit_fun)
+
+
+#Data summary
+data_summary <- function(x, num_var, ...){
+  group_var <- quos(...)
+  num_var <- enquo(num_var)
+  x %>%
+    group_by(!!!group_var) %>%
+    summarize(mean = mean(!!num_var), n = n(), 
+              sd = sd(!!num_var), se = sd/sqrt(n))
+}
