@@ -1,3 +1,10 @@
+#restart R without quiting
+restart.r <- function() {
+  assign('.Last',  function() {system('R')}, envir = globalenv())
+  quit(save = 'no')
+} #then use restart.r()
+
+
 #regression model to multiple columns and subsections
 fit_fun <- function(df){
   summary(lm(y_var ~ x_var, data = df)) #depending on the data
