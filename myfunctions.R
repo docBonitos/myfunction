@@ -41,3 +41,10 @@ data_summary <- function(x, num_var, ...){
     summarize(mean = mean(!!num_var), n = n(), 
               sd = sd(!!num_var), se = sd/sqrt(n))
 }
+
+
+### recode based from another column string
+x <- 1:10
+y <- rep(c("A","B","C","D","D"), each = 2) 
+z <- tibble(x,y)
+z %>% mutate(y = ifelse(x > 8 & y == "D", "E", y))
